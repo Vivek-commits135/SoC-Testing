@@ -52,13 +52,11 @@ Complete the `Graph` class so that it parses `graph.json`. It should store the g
 
 #### 2. Implement the Search Algorithms
 For *every* `find_path` event in `queries.json`, you must run these three algorithms back-to-back to compare their efficiency:
-1.  **`dijkstra`**: Standard Breadth-First exploration with edge weights of 1. ($h(n) = 0$)
+1.  **`dijkstra`**:  A* with no heuristic $h(n) = 0$
 2.  **`astar_euclidean`**: A* using straight-line distance. 
     $h(n) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$
 3.  **`astar_manhattan`**: A* using grid distance. 
     $h(n) = |x_1 - x_2| + |y_1 - y_2|$
-
-*Hint: You only need to write one A* function. Dijkstra is just A* where the heuristic function always returns 0.*
 
 #### 3. Generate the Output
 For every `find_path` event, your program must push a JSON object to the `results` array in `output.json`. This object must contain the results and execution time (in milliseconds) for all three algorithms. 
