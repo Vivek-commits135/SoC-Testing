@@ -2,9 +2,9 @@
 
 ## 1. What You Will Learn
 
-* **Uninformed vs. Informed Search:** Transitioning from Dijkstra's expansion to goal-oriented heuristics ($g(n)$ vs $h(n)$).
-* **Heuristic Admissibility:** Proving the optimality condition where a heuristic must never overestimate the true remaining cost ($0 \le h(n) \le h^*(n)$).
-* **Heuristic Consistency (Monotonicity):** Formulating the triangle inequality constraint ($h(n) \le c(n, n') + h(n')$) required for graph searches.
+* **Uninformed vs. Informed Search:** Transitioning from Dijkstra's expansion to goal-oriented heuristics ($$g(n)$$ vs $$h(n)$$).
+* **Heuristic Admissibility:** Proving the optimality condition where a heuristic must never overestimate the true remaining cost ($$0 \le h(n) \le h^*(n)$$).
+* **Heuristic Consistency (Monotonicity):** Formulating the triangle inequality constraint ($$h(n) \le c(n, n') + h(n')$$) required for graph searches.
 * **API-Style I/O Architecture:** You will learn how to read JSON inputs and write JSON outputs. We are setting this up now because you will reuse this exact same format for all future assignments, like the Traveling Salesperson Problem (TSP).
 ---
 
