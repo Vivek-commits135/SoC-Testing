@@ -29,6 +29,7 @@
 ---
 # Additional Resources
 - Chapters 23 and 24 (Minimum Spanning Trees & Single-Source Shortest Paths) from the book [Introduction to Algorithms](https://github.com/Vivek-commits135/Soc-2026-The-Optimal-Odessey/blob/main/Resources/Cormen%20Introduction%20to%20Algorithms.pdf)
+- You can also check out [DSA Slides](https://www.cse.iitb.ac.in/~akg/courses/2025-ds/) to better understand Union find and other graph algorithms.
 
 ---
 ## Problems to be submitted
