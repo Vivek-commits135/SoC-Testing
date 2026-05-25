@@ -38,13 +38,13 @@
 - [Road Reparation](https://cses.fi/problemset/task/1675)
 - [Road Construction](https://cses.fi/problemset/task/1676)
 - [Flight Discount](https://cses.fi/problemset/task/1195)
-- [Cycle Finding](https://cses.fi/problemset/task/1197)
 - [Flight Routes](https://cses.fi/problemset/task/1196)
+- [Investigation](https://cses.fi/problemset/task/1202)
 ---
 
 ## Optional Problems
 
-- [Investigation](https://cses.fi/problemset/task/1202)
+- [Visiting Cities](https://cses.fi/problemset/task/1203)
 - [High Score](https://cses.fi/problemset/task/1673)
 - [Dijkstra?](https://codeforces.com/contest/20/problem/C)
 - [Shichikuji and Power Grid](https://codeforces.com/contest/1245/problem/D) 
