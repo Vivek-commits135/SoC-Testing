@@ -34,7 +34,7 @@
 ## Problems to be submitted
 
 - [Shortest Routes I](https://cses.fi/problemset/task/1671)
-- [Shortest Routes II](https://cses.fi/problemset/task/1672)
+- [Dijkstra?](https://codeforces.com/contest/20/problem/C)
 - [Road Reparation](https://cses.fi/problemset/task/1675)
 - [Road Construction](https://cses.fi/problemset/task/1676)
 - [Flight Discount](https://cses.fi/problemset/task/1195)
@@ -46,7 +46,6 @@
 
 - [Visiting Cities](https://cses.fi/problemset/task/1203)
 - [High Score](https://cses.fi/problemset/task/1673)
-- [Dijkstra?](https://codeforces.com/contest/20/problem/C)
 - [Shichikuji and Power Grid](https://codeforces.com/contest/1245/problem/D) 
 - [Design Tutorial: Inverse the Problem](https://codeforces.com/contest/472/problem/D)
 - [MST for Each Edge](https://codeforces.com/contest/609/problem/E)
