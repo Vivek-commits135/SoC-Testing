@@ -1,0 +1,7 @@
+{
+    "grid_size": {
+        "rows": 5,
+        "cols": 5
+    },
+    "obstacles": []
+}

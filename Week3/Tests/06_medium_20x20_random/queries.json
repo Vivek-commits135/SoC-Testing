@@ -1,0 +1,55 @@
+{
+    "meta": {
+        "id": "assignment_01"
+    },
+    "events": [
+        {
+            "id": 1,
+            "type": "find_path",
+            "start": {
+                "y": 0,
+                "x": 0
+            },
+            "goal": {
+                "y": 19,
+                "x": 19
+            }
+        },
+        {
+            "id": 2,
+            "type": "find_path",
+            "start": {
+                "y": 5,
+                "x": 2
+            },
+            "goal": {
+                "y": 5,
+                "x": 18
+            }
+        },
+        {
+            "id": 3,
+            "type": "find_path",
+            "start": {
+                "y": 18,
+                "x": 2
+            },
+            "goal": {
+                "y": 2,
+                "x": 18
+            }
+        },
+        {
+            "id": 4,
+            "type": "find_path",
+            "start": {
+                "y": 10,
+                "x": 0
+            },
+            "goal": {
+                "y": 10,
+                "x": 19
+            }
+        }
+    ]
+}

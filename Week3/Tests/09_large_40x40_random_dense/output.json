@@ -1,0 +1,133 @@
+{
+    "meta": {
+        "id": "assignment_01"
+    },
+    "results": [
+        {
+            "id": 1,
+            "dijkstra": {
+                "path_found": true,
+                "path_length": 78,
+                "nodes_explored": 1276,
+                "time_ms": 4.5517
+            },
+            "astar_euclidean": {
+                "path_found": true,
+                "path_length": 78,
+                "nodes_explored": 1136,
+                "time_ms": 3.6172
+            },
+            "astar_manhattan": {
+                "path_found": true,
+                "path_length": 78,
+                "nodes_explored": 745,
+                "time_ms": 2.2545
+            }
+        },
+        {
+            "id": 2,
+            "dijkstra": {
+                "path_found": false,
+                "path_length": 0,
+                "nodes_explored": 1276,
+                "time_ms": 3.713
+            },
+            "astar_euclidean": {
+                "path_found": false,
+                "path_length": 0,
+                "nodes_explored": 1276,
+                "time_ms": 3.9147
+            },
+            "astar_manhattan": {
+                "path_found": false,
+                "path_length": 0,
+                "nodes_explored": 1276,
+                "time_ms": 3.9309
+            }
+        },
+        {
+            "id": 3,
+            "dijkstra": {
+                "path_found": true,
+                "path_length": 49,
+                "nodes_explored": 1154,
+                "time_ms": 3.7332
+            },
+            "astar_euclidean": {
+                "path_found": true,
+                "path_length": 49,
+                "nodes_explored": 451,
+                "time_ms": 1.4643
+            },
+            "astar_manhattan": {
+                "path_found": true,
+                "path_length": 49,
+                "nodes_explored": 296,
+                "time_ms": 0.8411
+            }
+        },
+        {
+            "id": 4,
+            "dijkstra": {
+                "path_found": true,
+                "path_length": 43,
+                "nodes_explored": 1066,
+                "time_ms": 2.9889
+            },
+            "astar_euclidean": {
+                "path_found": true,
+                "path_length": 43,
+                "nodes_explored": 189,
+                "time_ms": 0.5683
+            },
+            "astar_manhattan": {
+                "path_found": true,
+                "path_length": 43,
+                "nodes_explored": 145,
+                "time_ms": 0.4499
+            }
+        },
+        {
+            "id": 5,
+            "dijkstra": {
+                "path_found": false,
+                "path_length": 0,
+                "nodes_explored": 1276,
+                "time_ms": 3.5467
+            },
+            "astar_euclidean": {
+                "path_found": false,
+                "path_length": 0,
+                "nodes_explored": 1276,
+                "time_ms": 3.8027
+            },
+            "astar_manhattan": {
+                "path_found": false,
+                "path_length": 0,
+                "nodes_explored": 1276,
+                "time_ms": 3.7299
+            }
+        },
+        {
+            "id": 6,
+            "dijkstra": {
+                "path_found": false,
+                "path_length": 0,
+                "nodes_explored": 1276,
+                "time_ms": 3.6973
+            },
+            "astar_euclidean": {
+                "path_found": false,
+                "path_length": 0,
+                "nodes_explored": 1276,
+                "time_ms": 3.8123
+            },
+            "astar_manhattan": {
+                "path_found": false,
+                "path_length": 0,
+                "nodes_explored": 1276,
+                "time_ms": 3.9616
+            }
+        }
+    ]
+}
