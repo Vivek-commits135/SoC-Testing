@@ -10,9 +10,9 @@
 
 ## 2. Resources
 
+* A* part in Lecture 17 from [DSA Slides](https://www.cse.iitb.ac.in/~akg/courses/2025-ds/).
 * Chapter 13 (Shortest Paths) from [CP Handbook](https://github.com/Vivek-commits135/Soc-2026-The-Optimal-Odessey/blob/main/Resources/cp_handbook.pdf).
 * [Red Blob Games: Introduction to A*](https://www.redblobgames.com/pathfinding/a-star/introduction.html) *(Interactive spatial pathfinding visualizer).*
-* Chapter 24 (Single-Source Shortest Paths) from [Introduction to Algorithms (CLRS)]().
 
 ---
 ## Setup
