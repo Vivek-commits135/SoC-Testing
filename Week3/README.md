@@ -19,7 +19,7 @@
 **nlohmann/json** for JSON parsing. 
 
 The easiest way is to use the single-header version.
-1. Download the latest [`json.hpp` file directly from their releases page](https://github.com/nlohmann/json/releases/latest/download/json.hpp).
+1. Download the latest [`json.hpp`](https://github.com/nlohmann/json/releases/latest/download/json.hpp) file directly from their releases page.
 2. Place `json.hpp` in the same folder as your `main.cpp`.
 3. Include it in your code using `#include "json.hpp"` (Note: The provided template uses `<nlohmann/json.hpp>` assuming a global install, so simply change that line to `"json.hpp"` if you download the file locally)
 ---
@@ -92,8 +92,34 @@ For every `find_path` event, your program must push a JSON object to the `result
     ]
 }
 ```
----
+#### 4. Performance Visualization
 
+A reference Python visualization script (`visualize.py`) is provided to analyze the generated `output.json`.
+
+Install the required Python packages:
+
+```bash
+pip install numpy matplotlib
+```
+
+
+Basic usage:
+
+```bash
+python visualize_summary.py output.json
+```
+
+Specify a custom output image filename:
+
+```bash
+python visualize_summary.py output.json --save astar_summary.png
+```
+
+The script generates:
+
+- A summary visualization (`performance_summary.png` by default)
+- Aggregate statistics printed to the terminal
+---
 ## ❗️ Note
 
 > It is highly recommended that you share your doubts, methods, progress, and problems related to the questions and/or content on the **WhatsApp group**.
