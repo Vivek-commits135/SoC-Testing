@@ -35,7 +35,7 @@ if (type == "tsp") {
 ```
 
 ### Step 2: Implement the Solvers (`tsp_solvers.hpp`)
-You need to implement two classes:
+You need to implement two classes or functions:
 1. **`TSPBruteForce`**: Implement a permutation-based approach that evaluates all $(N-1)!$ possible routes.
 2. **`TSPOptimized`**: Implement a significantly faster algorithm. You can choose to write an exact solver using **Held-Karp Bitmask DP**, or an approximation/heuristic like **Nearest Neighbor** or **2-opt**. You can refer to [Heuristics](https://pirun.ku.ac.th/~fengpppa/02206337/htsp.pdf) for an idea on some common ones. You can also browse for any such heuristic and approximations on the internet.
 
