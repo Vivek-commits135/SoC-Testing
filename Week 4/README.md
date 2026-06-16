@@ -22,10 +22,10 @@ Week4_TSP/
 
 ## 🛠️ The Task
 
-You are provided with a working `driver.cpp` that reads `graph.json` and `queries.json`. We are introducing a new query type: `"tsp"`.
+You should already have a working `driver.cpp` from week 3 that reads `graph.json` and `queries.json`. We are introducing a new query type: `"tsp"`.
 
 ### Step 1: Update the Driver
-In `driver.cpp`, inside the query processing loop, intercept the `"tsp"` query type:
+In `driver.cpp`, inside the query processing loop, intercept the new `"tsp"` query type:
 ```cpp
 if (type == "tsp") {
     // Extract the nodes to visit from the query
@@ -34,10 +34,10 @@ if (type == "tsp") {
 }
 ```
 
-### Step 2: Implement the Solvers (`tsp_solvers.hpp`)
-You need to implement two classes or functions:
+### Step 2: Implement the Solvers
+You need to implement two classes or functions that handle a tsp query:
 1. **`TSPBruteForce`**: Implement a permutation-based approach that evaluates all $(N-1)!$ possible routes.
-2. **`TSPOptimized`**: Implement a significantly faster algorithm. You can choose to write an exact solver using **Held-Karp Bitmask DP**, or an approximation/heuristic like **Nearest Neighbor** or **2-opt**. You can refer to [Heuristics](https://pirun.ku.ac.th/~fengpppa/02206337/htsp.pdf) for an idea on some common ones. You can also browse for any such heuristic and approximations on the internet.
+2. **`TSPOptimized`**: Implement a significantly faster algorithm. You can choose to write an exact solver using **Held-Karp Bitmask DP**, or an approximation/heuristic like **Nearest Neighbor** or **2-opt**. You can refer to [Heuristics](https://pirun.ku.ac.th/~fengpppa/02206337/htsp.pdf) for an idea on some common ones. You can also browse for any such heuristic and approximations on the internet. Take some time after starting on approximations and cycle through the methods to find good ones.
 
 ### Step 3: Compilation (CRITICAL)
 Because TSP is heavily reliant on permutation and DP state evaluation, unoptimized C++ code will be agonizingly slow. **You must compile with the `-O3` flag** to enable vectorization and loop unrolling, which speeds up the code dramatically (often ~4x).
