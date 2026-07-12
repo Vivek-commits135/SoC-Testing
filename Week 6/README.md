@@ -74,6 +74,16 @@ Three things control everything:
   enough change to escape local minima but small enough to keep most of a
   good tour intact.
 
+  Concretely: if your tour is `... A → B → ... → C → D ...`, a 2-opt move
+  deletes edges `A–B` and `C–D` and reconnects as `A–C` and `B–D` — the
+  only way to reconnect two removed edges that keeps the tour a single
+  loop. That reconnection is exactly the same as reversing the segment
+  from `B` to `C` in place, which is why the code for it is just
+  `reverse(tour.begin()+i, tour.begin()+j+1)`. It's a good default move
+  because it's the smallest change that can undo a "crossing" in the
+  tour, and its cost delta only needs 4 edge lookups — no need to
+  recompute the whole tour cost after every move.
+
 ---
 
 ## 3. Understanding the Input JSON
@@ -117,7 +127,7 @@ query's node subset and returns a tour as **local indices `[0..m-1]`**
 ### Step 3: Wire `driver.cpp`
 For each `"tsp"` event: build the distance submatrix → call
 `simulated_annealing(dist)` → map local indices back to original node IDs →
-write the output (see the format below).
+write the output .
 
 ### Step 4: Compile and run
 
@@ -127,63 +137,33 @@ g++ -O3 -std=c++17 driver.cpp -o driver
 ./driver "Tests/Test 1/graph.json" "Tests/Test 1/queries_large.json" my_output_large.json
 ```
 
-`-O3` matters even more here than in Week 4/5 — SA's inner loop runs
+`-O3` matters even more here Since SA's inner loop runs
 thousands of iterations per query, and each `two_opt_neighbor` call touches
 the whole tour.
 
-### Step 5: Check your results
-`Tests/Test 1` and `Tests/Test 2` each ship an `output_small.json` /
-`output_large.json` containing the **exact optimum** (Brute Force and/or
-Held-Karp) alongside a working `simulated_annealing` result, so you can
-check both correctness and solution quality:
+---
+### Step 5: Generate your own reference optimum
+`Tests/Test 1` and `Tests/Test 2` only ship `graph.json`,
+`queries_small.json`, and `queries_large.json`. You
+already have exact solvers from Weeks 4/5 (Brute Force, Held-Karp), so use
+them: run your Week 4/5 driver on these same inputs to produce your own
+"ground truth" output, then run this week's driver (SA) on the same inputs
+and compare the two.
 
 ```bash
-python3 visualize.py "Tests/Test 1/output_small.json" my_output_small.json
-python3 visualize.py "Tests/Test 2/output_large.json" my_output_large.json
+# From your Week 4 or Week 5 folder — your own Brute Force / Held-Karp
+./driver "../Week 6/Tests/Test 1/graph.json" "../Week 6/Tests/Test 1/queries_small.json" reference_small.json
+./driver "../Week 6/Tests/Test 1/graph.json" "../Week 6/Tests/Test 1/queries_large.json" reference_large.json
+
+# From this week's folder — your Simulated Annealing
+./driver "Tests/Test 1/graph.json" "Tests/Test 1/queries_small.json" my_output_small.json
+./driver "Tests/Test 1/graph.json" "Tests/Test 1/queries_large.json" my_output_large.json
+
+python3 visualize.py reference_small.json my_output_small.json
+python3 visualize.py reference_large.json my_output_large.json
 ```
-
-This prints a table with the exact optimum, your SA cost, the
-approximation ratio (`SA / OPT`), and how long your solver took. On `Test 1`
-(n ≤ 7) your ratio should be **exactly 1.0x** most runs — SA has no excuse
-not to find the true optimum on graphs that small. `Test 2` goes up to
-n = 16, where Held-Karp is still exact but noticeably slower to compute
-than SA — this is the regime where SA starts to earn its keep.
-
-### Generate the Output
-
-```json
-{
-    "meta": {"id": "assignment_04"},
-    "results": [
-        {
-            "id": 1,
-            "simulated_annealing": {
-                "cost": 274.26,
-                "tour": [0, 4, 1, 2, 3, 0],
-                "time_us": 30568.45
-            }
-        }
-    ]
-}
-```
-
 ---
 
-## 5. Test Cases
-
-| | Graph | Queries | What it checks |
-|---|---|---|---|
-| **Test 1** | 7-node sparse graph (same as Week 4/5) | small: 3 & 4 nodes · large: 6 & 7 nodes | Correctness — SA should match the exact optimum every time on inputs this small. |
-| **Test 2** | 16-node complete Euclidean graph | small: 5 & 9 nodes · large: 8 & 16 nodes | Scaling — brute force is infeasible on the n=16 query; Held-Karp is still exact here and is your ground truth, but notice SA gets there far faster. |
-
-> **Note:** `Test 1`'s reference costs were regenerated using proper
-> Floyd-Warshall shortest-path distances between subset nodes (as the
-> Week 4/5 README instructs), not raw direct-edge sums. If you compare
-> against the *original* Week 4/5 `output.json` files for the same graph,
-> a couple of costs won't match for that reason — a graph this sparse has
-> genuine shortcuts through nodes outside the queried subset.
-
----
 
 ## 6. Tuning Tips
 
@@ -202,12 +182,65 @@ than SA — this is the regime where SA starts to earn its keep.
   — SA still explores, but from a reasonable place instead of a chaotic one.
 
 ---
+## 7. Test Cases
 
-## Problems to be submitted
+| | Graph | Queries | What it checks |
+|---|---|---|---|
+| **Test 1** | 7-node sparse graph (same as Week 4/5) | small: 3 & 4 nodes · large: 6 & 7 nodes | Correctness — run your Week 4/5 Brute Force / Held-Karp on these same files to get your own exact optimum, then confirm SA matches it. |
+| **Test 2** | 16-node complete Euclidean graph | small: 5 & 9 nodes · large: 8 & 16 nodes | Scaling — the n=16 query is too big for Brute Force, so this is where your Held-Karp implementation earns its keep as ground truth, and where SA's speed advantage starts to show. |
 
-Exact-answer judges don't suit a randomized heuristic well, so this week's
-submissions are **partial-scoring / optimization** judges instead — the
-better your tour, the more you score, which is exactly what SA is for.
+And Try generating graph and test your algorithms.
+---
 
-- [Travelling Salesperson 2D (Kattis)](https://open.kattis.com/problems/tsp) — up to 1000 points, scored by tour length. A great fit for NN + 2-opt + SA under a time limit.
-- [Euclidean TSP (Kattis)](https://open.kattis.com/problems/euclideantsp) — same flavor, different constraints; good for testing how your cooling schedule holds up on a second instance size.
+
+## 8. More Methods to Explore (Optional)
+
+2-opt + geometric cooling is the standard starting point, but it's just one
+point in a much bigger design space. If you finish early or want to push
+your Kattis score further, these are worth trying — roughly in order of
+"small tweak" to "different algorithm entirely":
+
+**Better moves (swap in for `two_opt_neighbor`)**
+- **Or-opt** — instead of reversing a segment, relocate a short chain of
+  1–3 consecutive cities to a different point in the tour. Cheaper per
+  move than 2-opt and catches a different class of improvements (good
+  combined with 2-opt: alternate between the two).
+- **3-opt** — remove three edges instead of two. Strictly more powerful
+  than 2-opt (it includes Or-opt as a special case), but O(n³) candidate
+  moves instead of O(n²) — usually only worth it on smaller instances or
+  with a randomized/segment-limited variant.
+- [**Lin–Kernighan**](https://en.wikipedia.org/wiki/Lin%E2%80%93Kernighan_heuristic) — the
+  classic "variable-depth" move: chains several edge swaps together,
+  keeping a move only if the *whole chain* improves the tour. This is
+  what state-of-the-art TSP heuristics (like LKH) are built on — a serious
+  step up in complexity, but the single most impactful thing you can read
+  about after this week.
+
+**Better cooling schedules (swap in for geometric cooling)**
+- **Adaptive cooling** — adjust the cooling rate based on the acceptance
+  ratio (fraction of moves accepted) at each temperature, instead of a
+  fixed multiplier.
+- **Reheating** — if the best-so-far cost hasn't improved in a while,
+  bump the temperature back up instead of letting it keep dropping. Turns
+  a single annealing run into several shorter ones that each get a chance
+  to explore a different part of the search space.
+
+**Other metaheuristics entirely (same problem, different search strategy)**
+- [**Tabu Search**](https://en.wikipedia.org/wiki/Tabu_search) — like SA
+  but deterministic: always take the best available move, and maintain a
+  short-term memory ("tabu list") of recently-visited tours/moves so you
+  can't immediately undo your own progress and loop forever.
+- [**Genetic Algorithms**](https://en.wikipedia.org/wiki/Genetic_algorithm) —
+  keep a *population* of tours, "breed" good ones together (e.g. Ordered
+  Crossover, which is worth reading about specifically — naive crossover
+  breaks the "visit each city once" constraint), and mutate with 2-opt.
+- [**Ant Colony Optimization**](https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms) —
+  simulate many "ants" building tours greedily but randomly, laying down
+  more pheromone on shorter tours so future ants are biased toward them.
+  Fun to implement and visualize, and a nice contrast to SA since it's
+  population-based rather than single-solution.
+
+---
+
+- [Travelling Salesperson 2D (Kattis)](https://open.kattis.com/problems/tsp)
+- [Euclidean TSP (Kattis)](https://open.kattis.com/problems/euclideantsp)

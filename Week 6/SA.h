@@ -5,7 +5,6 @@ using namespace std;
 // ---------------------------------------------------------------------
 // Week 6 — Simulated Annealing for TSP
 // Fill in the bodies of these functions in SA.cpp (or inline here,
-// matching how you structured TSP.h in Week 5).
 // ---------------------------------------------------------------------
 
 // Cost of a closed tour (tour[0] == tour.back()) given an m x m distance
