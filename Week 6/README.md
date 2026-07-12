@@ -267,9 +267,7 @@ your Kattis score further, these are worth trying — roughly in order of
 
 ## 8. Test Yourself (Optional)
 
-There's nothing to submit this week, but if you want to see how your SA
-holds up outside these test cases, both of these are scored by tour
-length rather than a strict pass/fail — a good fit for a heuristic:
+if you want to see how your SA holds up outside these test cases, both of these are scored by tour length rather than a strict pass/fail — a good fit for a heuristic:
 
 - [Travelling Salesperson 2D (Kattis)](https://open.kattis.com/problems/tsp) — up to 1000 points, scored by tour length. A good fit for NN + 2-opt + SA under a time limit.
 - [Euclidean TSP (Kattis)](https://open.kattis.com/problems/euclideantsp) — same flavor, different constraints; good for testing how your cooling schedule holds up on a second instance size.
