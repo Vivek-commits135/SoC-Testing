@@ -1,0 +1,67 @@
+{
+    "meta": {
+        "id": "assignment_02"
+    },
+    "results": [
+        {
+            "id": 1,
+            "n": 6,
+            "held_karp": {
+                "optimal_cost": 30.0,
+                "tour": [
+                    0,
+                    3,
+                    6,
+                    5,
+                    4,
+                    1,
+                    0
+                ]
+            },
+            "simulated_annealing": {
+                "cost": 30.0,
+                "tour": [
+                    0,
+                    1,
+                    4,
+                    6,
+                    5,
+                    3,
+                    0
+                ],
+                "time_us": 33506.644
+            }
+        },
+        {
+            "id": 2,
+            "n": 7,
+            "held_karp": {
+                "optimal_cost": 30.0,
+                "tour": [
+                    0,
+                    3,
+                    6,
+                    5,
+                    4,
+                    1,
+                    2,
+                    0
+                ]
+            },
+            "simulated_annealing": {
+                "cost": 30.0,
+                "tour": [
+                    0,
+                    3,
+                    6,
+                    5,
+                    4,
+                    1,
+                    2,
+                    0
+                ],
+                "time_us": 34971.269
+            }
+        }
+    ]
+}
