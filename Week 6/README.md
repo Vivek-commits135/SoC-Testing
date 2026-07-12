@@ -127,7 +127,7 @@ query's node subset and returns a tour as **local indices `[0..m-1]`**
 ### Step 3: Wire `driver.cpp`
 For each `"tsp"` event: build the distance submatrix → call
 `simulated_annealing(dist)` → map local indices back to original node IDs →
-write the output .
+write the output (see the format below).
 
 ### Step 4: Compile and run
 
@@ -137,7 +137,7 @@ g++ -O3 -std=c++17 driver.cpp -o driver
 ./driver "Tests/Test 1/graph.json" "Tests/Test 1/queries_large.json" my_output_large.json
 ```
 
-`-O3` matters even more here Since SA's inner loop runs
+`-O3` matters even more here — SA's inner loop runs
 thousands of iterations per query, and each `two_opt_neighbor` call touches
 the whole tour.
 
@@ -162,10 +162,32 @@ and compare the two.
 python3 visualize.py reference_small.json my_output_small.json
 python3 visualize.py reference_large.json my_output_large.json
 ```
+
+### Generate the Output
+
+Your driver's output should look like this — one `simulated_annealing`
+entry per query, with `cost`, the resulting `tour`, and how long it took:
+
+```json
+{
+    "meta": {"id": "assignment_04"},
+    "results": [
+        {
+            "id": 1,
+            "simulated_annealing": {
+                "cost": 274.26,
+                "tour": [0, 4, 1, 2, 3, 0],
+                "time_us": 30568.45
+            }
+        }
+    ]
+}
+```
+
 ---
 
 
-## 6. Tuning Tips
+## 5. Tuning Tips
 
 - If your SA result is consistently *worse* than OPT even on tiny graphs,
   your cooling is too fast, or `iters_per_temp` is too low — the search
@@ -182,18 +204,19 @@ python3 visualize.py reference_large.json my_output_large.json
   — SA still explores, but from a reasonable place instead of a chaotic one.
 
 ---
-## 7. Test Cases
+## 6. Test Cases
 
 | | Graph | Queries | What it checks |
 |---|---|---|---|
 | **Test 1** | 7-node sparse graph (same as Week 4/5) | small: 3 & 4 nodes · large: 6 & 7 nodes | Correctness — run your Week 4/5 Brute Force / Held-Karp on these same files to get your own exact optimum, then confirm SA matches it. |
 | **Test 2** | 16-node complete Euclidean graph | small: 5 & 9 nodes · large: 8 & 16 nodes | Scaling — the n=16 query is too big for Brute Force, so this is where your Held-Karp implementation earns its keep as ground truth, and where SA's speed advantage starts to show. |
 
-And Try generating graph and test your algorithms.
+Feel free to generate your own graphs and queries too, and stress-test your
+implementation beyond these two.
 ---
 
 
-## 8. More Methods to Explore (Optional)
+## 7. More Methods to Explore (Optional)
 
 2-opt + geometric cooling is the standard starting point, but it's just one
 point in a much bigger design space. If you finish early or want to push
@@ -242,5 +265,11 @@ your Kattis score further, these are worth trying — roughly in order of
 
 ---
 
-- [Travelling Salesperson 2D (Kattis)](https://open.kattis.com/problems/tsp)
-- [Euclidean TSP (Kattis)](https://open.kattis.com/problems/euclideantsp)
+## 8. Test Yourself (Optional)
+
+There's nothing to submit this week, but if you want to see how your SA
+holds up outside these test cases, both of these are scored by tour
+length rather than a strict pass/fail — a good fit for a heuristic:
+
+- [Travelling Salesperson 2D (Kattis)](https://open.kattis.com/problems/tsp) — up to 1000 points, scored by tour length. A good fit for NN + 2-opt + SA under a time limit.
+- [Euclidean TSP (Kattis)](https://open.kattis.com/problems/euclideantsp) — same flavor, different constraints; good for testing how your cooling schedule holds up on a second instance size.
